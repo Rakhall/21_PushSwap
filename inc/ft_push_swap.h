@@ -6,7 +6,7 @@
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 22:15:21 by sstannis          #+#    #+#             */
-/*   Updated: 2019/09/29 16:53:35 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/09/29 20:28:00 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,9 @@ void				ft_stackfree(t_stack **stack);
 void				ft_strarrayfree(char **strs);
 long long int		ft_atoll(const char *str);
 int					ft_isspace(int c);
+void		three_min_sec(t_stack **a, t_stack **b, t_flags **flags);
+void		three_min_third(t_stack **a, t_stack **b, t_flags **flags);
+void			min_to_top(t_stack **a, t_stack **b, t_flags **flags);
 
 
 #endif

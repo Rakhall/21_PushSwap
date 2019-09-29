@@ -6,7 +6,7 @@
 #    By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/19 22:14:41 by sstannis          #+#    #+#              #
-#    Updated: 2019/09/29 18:05:27 by sstannis         ###   ########.fr        #
+#    Updated: 2019/09/29 20:32:14 by sstannis         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,13 @@ FLAGS = -Wall -Wextra -Werror
 
 LIBFT = libft
 
-CH_SRCS = srcs/checker.c srcs/utils.c
+CH_SRCS = srcs/checker.c srcs/utils.c srcs/utils_array.c srcs/utils_check.c srcs/utils_push.c \
+srcs/utils_revrotate.c srcs/utils_rotate.c srcs/utils_stack.c srcs/utils_swap.c
 		 
-PS_SRCS = srcs/push_swap.c srcs/utils.c
+PS_SRCS = srcs/push_swap.c srcs/utils.c srcs/utils_array.c srcs/utils_check.c srcs/utils_push.c \
+srcs/utils_revrotate.c srcs/utils_rotate.c srcs/utils_stack.c srcs/utils_swap.c \
+\
+srcs/ps_algo.c srcs/ps_integer.c srcs/ps_movement.c srcs/ps_rotation.c
 
 INC = ft_push_swap.h
 
