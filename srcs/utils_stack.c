@@ -6,13 +6,13 @@
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 19:17:18 by sstannis          #+#    #+#             */
-/*   Updated: 2019/09/29 19:52:18 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/02 22:13:33 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_push_swap.h"
 
-t_stack	*ft_stacknew(int content)
+t_stack		*ft_stacknew(int content)
 {
 	t_stack *new;
 
@@ -23,7 +23,7 @@ t_stack	*ft_stacknew(int content)
 	return (new);
 }
 
-void	ft_stackfree(t_stack **stack)
+void		stack_free(t_stack **stack)
 {
 	t_stack *next;
 	t_stack *cur;
@@ -42,39 +42,35 @@ void	ft_stackfree(t_stack **stack)
 	}
 }
 
-void			freedom(t_stack *a, t_stack *b, t_flags *flags, char **args)
+void		freedom(t_stack *a, t_stack *b, t_flags *flags, char **args)
 {
-	ft_stackfree(&a);
-	ft_stackfree(&b);
+	stack_free(&a);
+	stack_free(&b);
 	free(flags);
-	ft_strarrayfree(args);
+	str_arr_free(args);
 }
 
-void	display_stacks(t_stack *a, t_stack *b)
+void		print(t_stack *a, t_stack *b)
 {
 	t_stack			*temp;
 	t_stack			*temp_b;
 
 	temp = a;
 	temp_b = b;
-	//ft_printf("---------------------------------------------------\n");
-	//ft_printf(" Stack A :");
-	ft_putstr("---------------------------------------------------\n");
-	ft_putstr(" Stack A :");
+	ft_putstr("_____________________________________________________________________\n");
+	ft_putstr("stack A :");
 	while (temp)
 	{
+		write(1, " ", 1);
 		ft_putnbr(temp->content);
-		//ft_printf(" |%d|", temp->content);
 		temp = temp->next;
 	}
-	ft_putstr("\n Stack B :");
-	//ft_printf("\n Stack B :");
+	ft_putstr("\nstack B :");
 	while (temp_b)
 	{
+		write(1, " ", 1);
 		ft_putnbr(temp_b->content);
-		//ft_printf(" |%d|", temp_b->content);
 		temp_b = temp_b->next;
 	}
-	ft_putstr("\n---------------------------------------------------\n");
-	//ft_printf("\n---------------------------------------------------\n");
+	ft_putstr("\n");
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_movement.c                                      :+:      :+:    :+:   */
+/*   push_swap_movement.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:26:00 by sstannis          #+#    #+#             */
-/*   Updated: 2019/09/29 20:27:52 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/02 21:41:18 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_push_swap.h"
 
-void		three_min_sec(t_stack **a, t_stack **b, t_flags **flags)
+void	three_min_sec(t_stack **a, t_stack **b, t_flags **flags)
 {
 	if ((*a)->content > (*a)->next->next->content)
 	{
@@ -26,7 +26,7 @@ void		three_min_sec(t_stack **a, t_stack **b, t_flags **flags)
 	}
 }
 
-void		three_min_third(t_stack **a, t_stack **b, t_flags **flags)
+void	three_min_third(t_stack **a, t_stack **b, t_flags **flags)
 {
 	if ((*a)->content > (*a)->next->content)
 	{
@@ -42,7 +42,7 @@ void		three_min_third(t_stack **a, t_stack **b, t_flags **flags)
 	}
 }
 
-void			min_to_top(t_stack **a, t_stack **b, t_flags **flags)
+void	min_to_top(t_stack **a, t_stack **b, t_flags **flags)
 {
 	int index;
 
@@ -59,7 +59,7 @@ void			min_to_top(t_stack **a, t_stack **b, t_flags **flags)
 	}
 }
 
-void				order_b(t_stack **a, t_stack **b, t_flags **flags)
+void	order_b(t_stack **a, t_stack **b, t_flags **flags)
 {
 	if (max_index(*b) > stack_len(*b) / 2)
 	{
@@ -79,7 +79,7 @@ void				order_b(t_stack **a, t_stack **b, t_flags **flags)
 	}
 }
 
-void				push_back_to_a(t_stack **a, t_stack **b, t_flags **flags)
+void	push_back_to_a(t_stack **a, t_stack **b, t_flags **flags)
 {
 	while (*b && (*b)->content > last_val(*a))
 	{

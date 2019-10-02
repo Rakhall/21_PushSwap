@@ -6,7 +6,7 @@
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 19:48:50 by sstannis          #+#    #+#             */
-/*   Updated: 2019/09/29 20:05:09 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/02 22:05:39 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	**ft_strarrdup(char **str)
 	return (res);
 }
 
-int		ft_strarraylen(char **array)
+int		str_arr_len(char **array)
 {
 	int res;
 
@@ -43,7 +43,7 @@ int		ft_strarraylen(char **array)
 	return (res);
 }
 
-void	ft_strarrayfree(char **strs)
+void	str_arr_free(char **strs)
 {
 	int i;
 
@@ -58,8 +58,8 @@ void	ft_strarrayfree(char **strs)
 
 void	mult_error(t_stack **a, char **args)
 {
-	ft_stackfree(a);
-	ft_strarrayfree(args);
+	stack_free(a);
+	str_arr_free(args);
 	write(2, "Error : invalid parameters\n", 27);
 	exit(1);
 }

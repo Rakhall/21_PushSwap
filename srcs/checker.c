@@ -6,42 +6,20 @@
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 22:04:28 by sstannis          #+#    #+#             */
-/*   Updated: 2019/09/29 19:58:23 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/02 22:10:03 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_push_swap.h"
 
-int				main(int argc, char **argv)
+void	inst_error(t_stack **a, t_stack **b, char *line, t_flags **flags)
 {
-	t_stack		*a;
-	t_stack		*b;
-	char		*line;
-	char		**args;
-	t_flags		*flags;
-	char		*okko;
-
-	if (argc > 1)
-	{
-		a = ft_stacknew(0);
-		b = NULL;
-		line = NULL;
-		if (argc == 2 + check_for_flags(argv, &flags))
-			args = ft_strsplit(argv[1 + check_for_flags(argv, &flags)], ' ');
-		else
-			args = ft_strarrdup(&argv[1 + check_for_flags(argv, &flags)]);
-		get_numbers(&a, ft_strarraylen(args), args);
-		do_operations(line, &a, &b, &flags);
-		okko = (check_sort(a) && !b) ? "OK\n" : "KO\n";
-		ft_putstr(okko);
-	//	ft_printf(((check_sort(a) && !b) ? "OK\n" : "KO\n"));
-		freedom(a, b, flags, args);
-	}
-	else {
-		ft_putstr("usage: ./checker -[options] numbers list (n1 n2...)\n");
-	//	ft_printf("usage: ./checker -[options] numbers list (n1 n2...)\n");
-	}
-	return (0);
+	free(*flags);
+	free(line);
+	stack_free(a);
+	stack_free(b);
+	write(2, "Error : invalid instruction\n", 28);
+	exit(1);
 }
 
 void	do_operations(char *line, t_stack **a, t_stack **b, t_flags **flags)
@@ -67,18 +45,35 @@ void	do_operations(char *line, t_stack **a, t_stack **b, t_flags **flags)
 		ft_strclr(line);
 		free(line);
 	}
-	if (check_sort(*a))
+	if (check_stack_sort(*a))
 		do_count(*flags);
 	ft_strclr(line);
 	free(line);
 }
 
-void	inst_error(t_stack **a, t_stack **b, char *line, t_flags **flags)
+int		main(int argc, char **argv)
 {
-	free(*flags);
-	free(line);
-	ft_stackfree(a);
-	ft_stackfree(b);
-	write(2, "Error : invalid instruction\n", 28);
-	exit(1);
+	t_stack		*a;
+	t_stack		*b;
+	char		*line;
+	char		**args;
+	t_flags		*flags;
+
+	if (argc > 1)
+	{
+		a = ft_stacknew(0);
+		b = NULL;
+		line = NULL;
+		if (argc == 2 + check_for_flags(argv, &flags))
+			args = ft_strsplit(argv[1 + check_for_flags(argv, &flags)], ' ');
+		else
+			args = ft_strarrdup(&argv[1 + check_for_flags(argv, &flags)]);
+		get_numbers(&a, str_arr_len(args), args);
+		do_operations(line, &a, &b, &flags);
+		ft_putstr((check_stack_sort(a) && !b) ? "OK\n" : "KO\n");
+		freedom(a, b, flags, args);
+	}
+	else
+		ft_putstr("usage: ./checker -[options] numbers list (n1 n2...)\n");
+	return (0);
 }

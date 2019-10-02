@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_checks.c                                     :+:      :+:    :+:   */
+/*   utils_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 19:24:09 by sstannis          #+#    #+#             */
-/*   Updated: 2019/09/29 19:25:16 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/02 22:31:02 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_push_swap.h"
 
-int			check_sort(t_stack *a)
+int		check_stack_sort(t_stack *a)
 {
 	t_stack	*temp;
 
@@ -26,7 +26,7 @@ int			check_sort(t_stack *a)
 	return (1);
 }
 
-int			check_valid_nb(long long int nb, t_stack *t, t_stack *a)
+int		check_valid_nb(long long int nb, t_stack *t, t_stack *a)
 {
 	t_stack	*temp;
 
@@ -42,7 +42,7 @@ int			check_valid_nb(long long int nb, t_stack *t, t_stack *a)
 	return (1);
 }
 
-int			check_valid_args(int argc, char **argv)
+int		check_valid_args(int argc, char **argv)
 {
 	int i;
 	int j;

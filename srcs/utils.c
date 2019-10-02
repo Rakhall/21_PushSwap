@@ -6,7 +6,7 @@
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 17:44:28 by sstannis          #+#    #+#             */
-/*   Updated: 2019/09/29 20:07:21 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/02 22:07:06 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			get_numbers(t_stack **a, int argc, char **argv)
 	t = *a;
 	while (i < argc)
 	{
-		temp = ft_atoll(argv[i]);
+		temp = atoll(argv[i]);
 		if (!(check_valid_nb(temp, t, *a)))
 			mult_error(a, argv);
 		else
@@ -58,17 +58,17 @@ void			init_list(t_stack **a, int argc, char **argv)
 	*a = temp;
 }
 
-void	do_count(t_flags *flags)
+void			do_count(t_flags *flags)
 {
-	if (flags->count) {
-		ft_putstr("== TOTAL MOVES : ");
+	if (flags->count)
+	{
+		ft_putstr("Операций:");
 		ft_putnbr(flags->nb);
-		ft_putstr(" ==\n");
-		//ft_printf("== TOTAL MOVES : %d ==\n", flags->nb);
+		ft_putstr("\n");
 	}
 }
 
-long long int	ft_atoll(const char *str)
+long long int	atoll(const char *str)
 {
 	int				neg;
 	long long int	res;
@@ -77,7 +77,8 @@ long long int	ft_atoll(const char *str)
 	neg = 1;
 	res = 0;
 	i = 0;
-	while ((str[i] == ' ') || (str[i] == '\n') || (str[i] == '\t') || (str[i] == '\r') || (str[i] == '\f') || (str[i] == '\v'))
+	while ((str[i] == ' ') || (str[i] == '\n') || (str[i] == '\t')
+	|| (str[i] == '\r') || (str[i] == '\f') || (str[i] == '\v'))
 		i++;
 	if (str[i] == '-')
 		neg = -1;

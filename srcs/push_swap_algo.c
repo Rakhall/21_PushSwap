@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_algo.c                                          :+:      :+:    :+:   */
+/*   push_swap_algo.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:13:37 by sstannis          #+#    #+#             */
-/*   Updated: 2019/09/29 20:14:35 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/02 22:09:47 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	solve(t_stack **a, t_stack **b, t_flags **flags)
 	int		len;
 
 	len = stack_len(*a);
-	if (check_sort(*a) == 0)
+	if (check_stack_sort(*a) == 0)
 	{
 		if (len <= 3)
 			solve_three(a, b, flags);
@@ -28,12 +28,12 @@ void	solve(t_stack **a, t_stack **b, t_flags **flags)
 	}
 }
 
-void			solve_three(t_stack **a, t_stack **b, t_flags **flags)
+void	solve_three(t_stack **a, t_stack **b, t_flags **flags)
 {
 	t_stack		*temp;
 	int			min;
 
-	if (check_sort(*a) == 0)
+	if (check_stack_sort(*a) == 0)
 	{
 		temp = *a;
 		min = min_val(*a);
@@ -56,18 +56,18 @@ void			solve_three(t_stack **a, t_stack **b, t_flags **flags)
 	}
 }
 
-void				solve_small_len(t_stack **a, t_stack **b, t_flags **flags)
+void	solve_small_len(t_stack **a, t_stack **b, t_flags **flags)
 {
 	int min;
 
-	while (check_sort(*a) == 0 || *b)
+	while (check_stack_sort(*a) == 0 || *b)
 	{
 		if (stack_len(*a) == 3)
 			solve_three(a, b, flags);
 		min = min_val(*a);
 		while ((*a)->content != min)
 			min_to_top(a, b, flags);
-		if (check_sort(*a) == 0)
+		if (check_stack_sort(*a) == 0)
 		{
 			pb(a, b, flags);
 			ft_putstr("pb\n");
@@ -84,12 +84,12 @@ void				solve_small_len(t_stack **a, t_stack **b, t_flags **flags)
 	do_count(*flags);
 }
 
-void				solve_big_len(t_stack **a, t_stack **b, t_flags **flags)
+void	solve_big_len(t_stack **a, t_stack **b, t_flags **flags)
 {
 	int		len;
 	t_data	*data;
 
-	if (check_sort(*a) == 0)
+	if (check_stack_sort(*a) == 0)
 	{
 		len = stack_len(*a);
 		if (!(data = (t_data *)malloc(sizeof(t_data))))

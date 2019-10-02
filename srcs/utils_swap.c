@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_pushswap.c                                   :+:      :+:    :+:   */
+/*   utils_swap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 19:11:55 by sstannis          #+#    #+#             */
-/*   Updated: 2019/09/29 20:03:03 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/02 22:15:45 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_push_swap.h"
 
-static void		swap(t_stack **stack)
+void	swap(t_stack **stack)
 {
 	int temp;
 
@@ -24,30 +24,30 @@ static void		swap(t_stack **stack)
 	}
 }
 
-void			sa(t_stack **a, t_stack **b, t_flags **flags)
+void	sa(t_stack **a, t_stack **b, t_flags **flags)
 {
 	swap(a);
 	if ((*flags)->v)
-		display_stacks(*a, *b);
+		print(*a, *b);
 	if ((*flags)->count)
 		((*flags)->nb)++;
 }
 
-void			sb(t_stack **a, t_stack **b, t_flags **flags)
+void	sb(t_stack **a, t_stack **b, t_flags **flags)
 {
 	swap(b);
 	if ((*flags)->v)
-		display_stacks(*a, *b);
+		print(*a, *b);
 	if ((*flags)->count)
 		((*flags)->nb)++;
 }
 
-void			ss(t_stack **a, t_stack **b, t_flags **flags)
+void	ss(t_stack **a, t_stack **b, t_flags **flags)
 {
 	swap(a);
 	swap(b);
 	if ((*flags)->v)
-		display_stacks(*a, *b);
+		print(*a, *b);
 	if ((*flags)->count)
 		((*flags)->nb)++;
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   revrotate_func.c                                   :+:      :+:    :+:   */
+/*   utils_revrotate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 19:08:17 by sstannis          #+#    #+#             */
-/*   Updated: 2019/09/29 19:16:07 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/02 22:15:10 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_push_swap.h"
 
-static void		revrotate(t_stack **stack)
+void	revrotate(t_stack **stack)
 {
 	t_stack		*inc;
 	int			prev_c;
@@ -33,30 +33,30 @@ static void		revrotate(t_stack **stack)
 	}
 }
 
-void			rra(t_stack **a, t_stack **b, t_flags **flags)
+void	rra(t_stack **a, t_stack **b, t_flags **flags)
 {
 	revrotate(a);
 	if ((*flags)->v)
-		display_stacks(*a, *b);
+		print(*a, *b);
 	if ((*flags)->count)
 		((*flags)->nb)++;
 }
 
-void			rrb(t_stack **a, t_stack **b, t_flags **flags)
+void	rrb(t_stack **a, t_stack **b, t_flags **flags)
 {
 	revrotate(b);
 	if ((*flags)->v)
-		display_stacks(*a, *b);
+		print(*a, *b);
 	if ((*flags)->count)
 		((*flags)->nb)++;
 }
 
-void			rrr(t_stack **a, t_stack **b, t_flags **flags)
+void	rrr(t_stack **a, t_stack **b, t_flags **flags)
 {
 	revrotate(a);
 	revrotate(b);
 	if ((*flags)->v)
-		display_stacks(*a, *b);
+		print(*a, *b);
 	if ((*flags)->count)
 		((*flags)->nb)++;
 }

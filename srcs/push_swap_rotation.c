@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_rotation.c                                      :+:      :+:    :+:   */
+/*   push_swap_rotation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:22:36 by sstannis          #+#    #+#             */
-/*   Updated: 2019/09/29 20:29:59 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/02 21:40:43 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	revrot(t_stack **a, t_stack **b, t_data *data, t_flags **flags)
 	}
 }
 
-void		min_steps(t_stack **a, t_stack **b, t_data *data, t_flags **flags)
+void	min_steps(t_stack **a, t_stack **b, t_data *data, t_flags **flags)
 {
 	int			i;
 	int			step_num;
