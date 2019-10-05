@@ -6,7 +6,7 @@
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 19:24:09 by sstannis          #+#    #+#             */
-/*   Updated: 2019/10/02 22:31:02 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/03 22:17:33 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		check_stack_sort(t_stack *a)
 	return (1);
 }
 
-int		check_valid_nb(long long int nb, t_stack *t, t_stack *a)
+int		number_validation(long long int nb, t_stack *t, t_stack *a)
 {
 	t_stack	*temp;
 
@@ -42,7 +42,7 @@ int		check_valid_nb(long long int nb, t_stack *t, t_stack *a)
 	return (1);
 }
 
-int		check_valid_args(int argc, char **argv)
+int		int_array_validation(int argc, char **argv)
 {
 	int i;
 	int j;
@@ -64,31 +64,31 @@ int		check_valid_args(int argc, char **argv)
 	return (1);
 }
 
-int		check_for_flags(char **str, t_flags **flags)
+int		read_flags(char **str, t_flags **flags)
 {
 	if (!(*flags))
 	{
 		if (!((*flags) = (t_flags *)malloc(sizeof(t_flags))))
-			cmn_error();
-		(*flags)->count = 0;
+			err();
+		(*flags)->c = 0;
 		(*flags)->v = 0;
 		if (ft_strcmp(str[1], "-t") == 0)
 		{
-			(*flags)->count = 1;
+			(*flags)->c = 1;
 			(*flags)->nb = 0;
 		}
 		if (ft_strcmp(str[1], "-v") == 0)
 			(*flags)->v = 1;
 		if (str[2])
 		{
-			if (ft_strcmp(str[2], "-t") == 0 && (*flags)->count == 0)
+			if (ft_strcmp(str[2], "-t") == 0 && (*flags)->c == 0)
 			{
-				(*flags)->count = 1;
+				(*flags)->c = 1;
 				(*flags)->nb = 0;
 			}
 			if (ft_strcmp(str[2], "-v") == 0 && (*flags)->v == 0)
 				(*flags)->v = 1;
 		}
 	}
-	return ((*flags)->v + (*flags)->count);
+	return ((*flags)->v + (*flags)->c);
 }

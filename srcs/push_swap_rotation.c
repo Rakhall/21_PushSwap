@@ -6,7 +6,7 @@
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:22:36 by sstannis          #+#    #+#             */
-/*   Updated: 2019/10/02 21:40:43 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/03 22:35:23 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	rotations(t_stack **a, t_stack **b, t_data *data, t_flags **flags)
 		data->ra = data->min_index;
 	else
 		data->rra = stack_len(*a) - data->min_index;
-	if (data->place <= stack_len(*b) / 2)
+	if (data->i <= stack_len(*b) / 2)
 		data->rb = (data->min_steps - data->rra - data->ra - 1);
 	else
 		data->rrb = (data->min_steps - data->rra - data->ra - 1);
@@ -96,6 +96,6 @@ void	min_steps(t_stack **a, t_stack **b, t_data *data, t_flags **flags)
 		}
 		i++;
 	}
-	data->place = find_place(*a, *b, data->min_index);
+	data->i = scope(*a, *b, data->min_index);
 	rotations(a, b, data, flags);
 }

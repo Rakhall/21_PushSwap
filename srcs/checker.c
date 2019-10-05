@@ -6,7 +6,7 @@
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 22:04:28 by sstannis          #+#    #+#             */
-/*   Updated: 2019/10/02 22:10:03 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/03 22:41:13 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	inst_error(t_stack **a, t_stack **b, char *line, t_flags **flags)
 	exit(1);
 }
 
-void	do_operations(char *line, t_stack **a, t_stack **b, t_flags **flags)
+void	run(char *line, t_stack **a, t_stack **b, t_flags **flags)
 {
 	while (get_next_line(0, &line) != 0)
 	{
@@ -46,7 +46,7 @@ void	do_operations(char *line, t_stack **a, t_stack **b, t_flags **flags)
 		free(line);
 	}
 	if (check_stack_sort(*a))
-		do_count(*flags);
+		operations(*flags);
 	ft_strclr(line);
 	free(line);
 }
@@ -56,22 +56,22 @@ int		main(int argc, char **argv)
 	t_stack		*a;
 	t_stack		*b;
 	char		*line;
-	char		**args;
+	char		**array;
 	t_flags		*flags;
 
 	if (argc > 1)
 	{
-		a = ft_stacknew(0);
+		a = new_stack(0);
 		b = NULL;
 		line = NULL;
-		if (argc == 2 + check_for_flags(argv, &flags))
-			args = ft_strsplit(argv[1 + check_for_flags(argv, &flags)], ' ');
+		if (argc == 2 + read_flags(argv, &flags))
+			array = ft_strsplit(argv[1 + read_flags(argv, &flags)], ' ');
 		else
-			args = ft_strarrdup(&argv[1 + check_for_flags(argv, &flags)]);
-		get_numbers(&a, str_arr_len(args), args);
-		do_operations(line, &a, &b, &flags);
+			array = str_arr_dup(&argv[1 + read_flags(argv, &flags)]);
+		read_numbers(&a, str_arr_len(array), array);
+		run(line, &a, &b, &flags);
 		ft_putstr((check_stack_sort(a) && !b) ? "OK\n" : "KO\n");
-		freedom(a, b, flags, args);
+		final_free(a, b, flags, array);
 	}
 	else
 		ft_putstr("usage: ./checker -[options] numbers list (n1 n2...)\n");

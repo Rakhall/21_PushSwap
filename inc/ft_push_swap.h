@@ -6,7 +6,7 @@
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 22:15:21 by sstannis          #+#    #+#             */
-/*   Updated: 2019/10/02 22:23:41 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/03 22:35:02 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,83 +16,87 @@
 
 # include "../libft/libft.h"
 
+typedef struct		s_stack
+{
+	int				content;
+	struct s_stack	*next;
+}					t_stack;
+
 typedef struct		s_data
 {
-	int				min_index;
-	int				place;
-	int				min_steps;
 	int				ra;
-	int				rra;
 	int				rb;
+	int				rra;
 	int				rrb;
+	int				min_index;
+	int				min_steps;
+	int				i;
 }					t_data;
 
 typedef struct		s_flags
 {
-	char			count;
 	int				nb;
 	char			v;
+	char			c;
 }					t_flags;
 
-typedef struct	s_stack
-{
-	int				content;
-	struct s_stack	*next;
-}				t_stack;
-
-void			swap(t_stack **stack);
-void			sa(t_stack **a, t_stack **b, t_flags **flags);
-void			sb(t_stack **a, t_stack **b, t_flags **flags);
-void			ss(t_stack **a, t_stack **b, t_flags **flags);
-void			push(t_stack **a, t_stack **b);
-void			pa(t_stack **a, t_stack **b, t_flags **flags);
-void			pb(t_stack **a, t_stack **b, t_flags **flags);
-void			revrotate(t_stack **stack);
-void			rra(t_stack **a, t_stack **b, t_flags **flags);
-void			rrb(t_stack **a, t_stack **b, t_flags **flags);
-void			rrr(t_stack **a, t_stack **b, t_flags **flags);
-void			rotate(t_stack **stack);
-void			ra(t_stack **a, t_stack **b, t_flags **flags);
-void			rb(t_stack **a, t_stack **b, t_flags **flags);
-void			rr(t_stack **a, t_stack **b, t_flags **flags);
-t_stack			*ft_stacknew(int content);
-void			stack_free(t_stack **stack);
-void			freedom(t_stack *a, t_stack *b, t_flags *flags, char **args);
-void			print(t_stack *a, t_stack *b);
-int				check_stack_sort(t_stack *a);
-int				check_valid_nb(long long int nb, t_stack *t, t_stack *a);
-int				check_valid_args(int argc, char **argv);
-int				check_for_flags(char **str, t_flags **flags);
-char			**ft_strarrdup(char **str);
-int				str_arr_len(char **array);
-void			str_arr_free(char **strs);
-void			mult_error(t_stack **a, char **args);
-void			cmn_error(void);
-void			rotations(t_stack **a, t_stack **b, t_data *data, t_flags **flags);
-void			rot(t_stack **a, t_stack **b, t_data *data, t_flags **flags);
-void			revrot(t_stack **a, t_stack **b, t_data *data, t_flags **flags);
-void			min_steps(t_stack **a, t_stack **b, t_data *data, t_flags **flags);
-void			three_min_sec(t_stack **a, t_stack **b, t_flags **flags);
-void			three_min_third(t_stack **a, t_stack **b, t_flags **flags);
-void			min_to_top(t_stack **a, t_stack **b, t_flags **flags);
-void			order_b(t_stack **a, t_stack **b, t_flags **flags);
-void			push_back_to_a(t_stack **a, t_stack **b, t_flags **flags);
-int				min_val(t_stack *a);
-int				max_val(t_stack *a);
-int				max_index(t_stack *a);
-int				min_index(t_stack *a);
-int				last_val(t_stack *b);
-void			solve(t_stack **a, t_stack **b, t_flags **flags);
-void			solve_three(t_stack **a, t_stack **b, t_flags **flags);
-void			solve_small_len(t_stack **a, t_stack **b, t_flags **flags);
-void			solve_big_len(t_stack **a, t_stack **b, t_flags **flags);
-void			get_numbers(t_stack **a, int argc, char **argv);
-void			init_list(t_stack **a, int argc, char **argv);
-void			do_count(t_flags *flags);
-long long int	atoll(const char *str);
-int				stack_len(t_stack *a);
-int				find_place(t_stack *a, t_stack *b, int index);
-int				steps(int index, t_stack *a, t_stack *b);
-
+void				swap(t_stack **stack);
+void				sa(t_stack **a, t_stack **b, t_flags **flags);
+void				sb(t_stack **a, t_stack **b, t_flags **flags);
+void				ss(t_stack **a, t_stack **b, t_flags **flags);
+void				push(t_stack **a, t_stack **b);
+void				pa(t_stack **a, t_stack **b, t_flags **flags);
+void				pb(t_stack **a, t_stack **b, t_flags **flags);
+void				revrotate(t_stack **stack);
+void				rra(t_stack **a, t_stack **b, t_flags **flags);
+void				rrb(t_stack **a, t_stack **b, t_flags **flags);
+void				rrr(t_stack **a, t_stack **b, t_flags **flags);
+void				rotate(t_stack **stack);
+void				ra(t_stack **a, t_stack **b, t_flags **flags);
+void				rb(t_stack **a, t_stack **b, t_flags **flags);
+void				rr(t_stack **a, t_stack **b, t_flags **flags);
+t_stack				*new_stack(int content);
+void				stack_free(t_stack **stack);
+void				final_free(t_stack *a, t_stack *b, t_flags *flags,
+	char **nums);
+void				print(t_stack *a, t_stack *b);
+int					check_stack_sort(t_stack *a);
+int					number_validation(long long int nb, t_stack *t, t_stack *a);
+int					int_array_validation(int argc, char **argv);
+int					read_flags(char **str, t_flags **flags);
+char				**str_arr_dup(char **str);
+int					str_arr_len(char **array);
+void				str_arr_free(char **strs);
+void				validation_error(t_stack **a, char **nums);
+void				err();
+void				rotations(t_stack **a, t_stack **b, t_data *data,
+	t_flags **flags);
+void				rot(t_stack **a, t_stack **b, t_data *data,
+	t_flags **flags);
+void				revrot(t_stack **a, t_stack **b, t_data *data,
+	t_flags **flags);
+void				min_steps(t_stack **a, t_stack **b, t_data *data,
+	t_flags **flags);
+void				three_min_sec(t_stack **a, t_stack **b, t_flags **flags);
+void				three_min_third(t_stack **a, t_stack **b, t_flags **flags);
+void				min_to_top(t_stack **a, t_stack **b, t_flags **flags);
+void				order_b(t_stack **a, t_stack **b, t_flags **flags);
+void				push_to_a(t_stack **a, t_stack **b, t_flags **flags);
+int					int_min(t_stack *a);
+int					int_max(t_stack *a);
+int					max_index(t_stack *a);
+int					min_index(t_stack *a);
+int					last_number(t_stack *b);
+void				start(t_stack **a, t_stack **b, t_flags **flags);
+void				algo_three(t_stack **a, t_stack **b, t_flags **flags);
+void				algo_seven(t_stack **a, t_stack **b, t_flags **flags);
+void				algo(t_stack **a, t_stack **b, t_flags **flags);
+void				read_numbers(t_stack **a, int argc, char **argv);
+void				init(t_stack **a, int argc, char **argv);
+void				operations(t_flags *flags);
+long long int		atoll(const char *str);
+int					stack_len(t_stack *a);
+int					scope(t_stack *a, t_stack *b, int index);
+int					steps(int index, t_stack *a, t_stack *b);
 
 #endif

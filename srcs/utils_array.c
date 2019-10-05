@@ -6,13 +6,13 @@
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 19:48:50 by sstannis          #+#    #+#             */
-/*   Updated: 2019/10/02 22:05:39 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/03 22:30:42 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_push_swap.h"
 
-char	**ft_strarrdup(char **str)
+char	**str_arr_dup(char **str)
 {
 	char	**res;
 	size_t	len;
@@ -56,15 +56,15 @@ void	str_arr_free(char **strs)
 	free(strs);
 }
 
-void	mult_error(t_stack **a, char **args)
+void	validation_error(t_stack **a, char **nums)
 {
 	stack_free(a);
-	str_arr_free(args);
+	str_arr_free(nums);
 	write(2, "Error : invalid parameters\n", 27);
 	exit(1);
 }
 
-void	cmn_error(void)
+void	error(void)
 {
 	write(2, "Error\n", 6);
 	exit(1);

@@ -1,63 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_int_calc.c                                      :+:      :+:    :+:   */
+/*   push_swap_integer.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:19:37 by sstannis          #+#    #+#             */
-/*   Updated: 2019/09/29 20:21:40 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/03 21:18:33 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_push_swap.h"
 
-int				min_val(t_stack *a)
+int				int_min(t_stack *a)
 {
-	int			res;
+	int			i;
 	t_stack		*temp;
 
 	temp = a;
-	res = temp->content;
+	i = temp->content;
 	while (temp)
 	{
-		if (temp->content < res)
-			res = temp->content;
+		if (temp->content < i)
+			i = temp->content;
 		temp = temp->next;
 	}
-	return (res);
+	return (i);
 }
 
-int				max_val(t_stack *a)
+int				int_max(t_stack *a)
 {
-	int			res;
+	int			i;
 	t_stack		*temp;
 
 	temp = a;
-	res = temp->content;
+	i = temp->content;
 	while (temp)
 	{
-		if (temp->content > res)
-			res = temp->content;
+		if (temp->content > i)
+			i = temp->content;
 		temp = temp->next;
 	}
-	return (res);
+	return (i);
 }
 
 int				max_index(t_stack *a)
 {
-	int			res;
+	int			i;
 	int			max;
 	t_stack		*temp;
 
 	temp = a;
-	max = max_val(a);
-	res = 0;
+	max = int_max(a);
+	i = 0;
 	while (temp)
 	{
 		if (temp->content == max)
-			return (res);
-		res++;
+			return (i);
+		i++;
 		temp = temp->next;
 	}
 	return (-1);
@@ -65,24 +65,24 @@ int				max_index(t_stack *a)
 
 int				min_index(t_stack *a)
 {
-	int			res;
+	int			i;
 	int			min;
 	t_stack		*temp;
 
 	temp = a;
-	min = min_val(a);
-	res = 0;
+	min = int_min(a);
+	i = 0;
 	while (temp)
 	{
 		if (temp->content == min)
-			return (res);
-		res++;
+			return (i);
+		i++;
 		temp = temp->next;
 	}
 	return (-1);
 }
 
-int				last_val(t_stack *b)
+int				last_number(t_stack *b)
 {
 	t_stack *temp;
 

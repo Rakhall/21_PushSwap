@@ -6,7 +6,7 @@
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:26:00 by sstannis          #+#    #+#             */
-/*   Updated: 2019/10/02 21:41:18 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/03 22:21:34 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	order_b(t_stack **a, t_stack **b, t_flags **flags)
 {
 	if (max_index(*b) > stack_len(*b) / 2)
 	{
-		while ((*b)->content != max_val(*b))
+		while ((*b)->content != int_max(*b))
 		{
 			rrb(a, b, flags);
 			ft_putstr("rrb\n");
@@ -71,7 +71,7 @@ void	order_b(t_stack **a, t_stack **b, t_flags **flags)
 	}
 	else
 	{
-		while ((*b)->content != max_val(*b))
+		while ((*b)->content != int_max(*b))
 		{
 			rb(a, b, flags);
 			ft_putstr("rb\n");
@@ -79,9 +79,9 @@ void	order_b(t_stack **a, t_stack **b, t_flags **flags)
 	}
 }
 
-void	push_back_to_a(t_stack **a, t_stack **b, t_flags **flags)
+void	push_to_a(t_stack **a, t_stack **b, t_flags **flags)
 {
-	while (*b && (*b)->content > last_val(*a))
+	while (*b && (*b)->content > last_number(*a))
 	{
 		pa(a, b, flags);
 		ft_putstr("pa\n");
@@ -99,7 +99,7 @@ void	push_back_to_a(t_stack **a, t_stack **b, t_flags **flags)
 			ft_putstr("pa\n");
 		}
 	}
-	if ((*a)->content > last_val(*a))
+	if ((*a)->content > last_number(*a))
 	{
 		rra(a, b, flags);
 		ft_putstr("rra\n");

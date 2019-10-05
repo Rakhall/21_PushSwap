@@ -6,26 +6,26 @@
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 17:44:28 by sstannis          #+#    #+#             */
-/*   Updated: 2019/10/02 22:07:06 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/03 22:17:56 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/ft_push_swap.h"
 
-void			get_numbers(t_stack **a, int argc, char **argv)
+void			read_numbers(t_stack **a, int argc, char **argv)
 {
 	long long int	temp;
 	int				i;
 	t_stack			*t;
 
-	init_list(a, argc, argv);
+	init(a, argc, argv);
 	i = 0;
 	t = *a;
 	while (i < argc)
 	{
 		temp = atoll(argv[i]);
-		if (!(check_valid_nb(temp, t, *a)))
-			mult_error(a, argv);
+		if (!(number_validation(temp, t, *a)))
+			validation_error(a, argv);
 		else
 		{
 			(*a)->content = (int)temp;
@@ -37,20 +37,20 @@ void			get_numbers(t_stack **a, int argc, char **argv)
 	*a = t;
 }
 
-void			init_list(t_stack **a, int argc, char **argv)
+void			init(t_stack **a, int argc, char **argv)
 {
 	t_stack		*temp;
 	t_stack		*new;
 	int			i;
 
-	if (!(check_valid_args(argc, argv)))
-		mult_error(a, argv);
+	if (!(int_array_validation(argc, argv)))
+		validation_error(a, argv);
 	i = 1;
 	temp = *a;
 	while (i < argc)
 	{
 		if (!(new = (t_stack *)malloc(sizeof(t_stack))))
-			cmn_error();
+			err();
 		new->next = temp;
 		temp = new;
 		i++;
@@ -58,9 +58,9 @@ void			init_list(t_stack **a, int argc, char **argv)
 	*a = temp;
 }
 
-void			do_count(t_flags *flags)
+void			operations(t_flags *flags)
 {
-	if (flags->count)
+	if (flags->c)
 	{
 		ft_putstr("Операций:");
 		ft_putnbr(flags->nb);

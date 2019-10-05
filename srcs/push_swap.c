@@ -6,7 +6,7 @@
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 22:10:15 by sstannis          #+#    #+#             */
-/*   Updated: 2019/10/02 21:48:52 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/03 22:35:36 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 int		stack_len(t_stack *a)
 {
-	int			res;
+	int			i;
 	t_stack		*temp;
 
 	if (!a)
 		return (0);
-	res = 0;
+	i = 0;
 	temp = a;
 	while (temp)
 	{
-		res++;
+		i++;
 		temp = temp->next;
 	}
-	return (res);
+	return (i);
 }
 
 int		check_location(t_stack *b, int elem)
@@ -47,7 +47,7 @@ int		check_location(t_stack *b, int elem)
 	return (res);
 }
 
-int		find_place(t_stack *a, t_stack *b, int index)
+int		scope(t_stack *a, t_stack *b, int index)
 {
 	int			i;
 	int			res;
@@ -63,9 +63,9 @@ int		find_place(t_stack *a, t_stack *b, int index)
 	res = -1;
 	if (stack_len(b) == 0)
 		return (0);
-	else if (elem < min_val(b))
+	else if (elem < int_min(b))
 		return (max_index(b));
-	else if (elem > max_val(b))
+	else if (elem > int_max(b))
 		return (max_index(b));
 	else
 		res = check_location(b, elem);
@@ -80,7 +80,7 @@ int		steps(int index, t_stack *a, t_stack *b)
 
 	steps = 0;
 	b_middle = 0;
-	place = find_place(a, b, index);
+	place = scope(a, b, index);
 	if (index > 0 && index <= stack_len(a) / 2)
 		steps += index;
 	else if (index != 0)
@@ -98,23 +98,23 @@ int		main(int argc, char **argv)
 {
 	t_stack		*a;
 	t_stack		*b;
-	char		**args;
+	char		**nums;
 	t_flags		*flags;
-	int			cflags;
+	int			i;
 
 	if (argc > 1)
 	{
-		a = ft_stacknew(0);
+		a = new_stack(0);
 		b = NULL;
-		cflags = check_for_flags(argv, &flags);
-		if (argc == 2 + cflags)
-			args = ft_strsplit(argv[1 + cflags], ' ');
+		i = read_flags(argv, &flags);
+		if (argc == 2 + i)
+			nums = ft_strsplit(argv[1 + i], ' ');
 		else
-			args = ft_strarrdup(&argv[1 + cflags]);
-		argc = str_arr_len(args);
-		get_numbers(&a, argc, args);
-		solve(&a, &b, &flags);
-		freedom(a, b, flags, args);
+			nums = str_arr_dup(&argv[1 + i]);
+		argc = str_arr_len(nums);
+		read_numbers(&a, argc, nums);
+		start(&a, &b, &flags);
+		final_free(a, b, flags, nums);
 	}
 	else
 		ft_putstr("usage: ./push_swap -[options] numbers list (n1 n2...)\n");

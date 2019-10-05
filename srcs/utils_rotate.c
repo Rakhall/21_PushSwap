@@ -6,7 +6,7 @@
 /*   By: sstannis <sstannis@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 19:05:52 by sstannis          #+#    #+#             */
-/*   Updated: 2019/10/02 22:15:29 by sstannis         ###   ########.fr       */
+/*   Updated: 2019/10/03 22:18:10 by sstannis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ra(t_stack **a, t_stack **b, t_flags **flags)
 	rotate(a);
 	if ((*flags)->v)
 		print(*a, *b);
-	if ((*flags)->count)
+	if ((*flags)->c)
 		((*flags)->nb)++;
 }
 
@@ -44,7 +44,7 @@ void	rb(t_stack **a, t_stack **b, t_flags **flags)
 	rotate(b);
 	if ((*flags)->v)
 		print(*a, *b);
-	if ((*flags)->count)
+	if ((*flags)->c)
 		((*flags)->nb)++;
 }
 
@@ -54,6 +54,6 @@ void	rr(t_stack **a, t_stack **b, t_flags **flags)
 	rotate(b);
 	if ((*flags)->v)
 		print(*a, *b);
-	if ((*flags)->count)
+	if ((*flags)->c)
 		((*flags)->nb)++;
 }
